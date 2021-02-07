@@ -1,0 +1,494 @@
+///////////////////////////////
+
+// Global
+.font12{
+    font-size: 12px;
+}
+.font14{
+    font-size: 14px;
+}
+.font16{
+    font-size: 16px;
+}
+.font18{
+    font-size: 18px;
+}
+.font20{
+    font-size: 20px;
+}
+
+button:disabled{
+    cursor: not-allowed;
+    pointer-events: all !important;
+}
+
+// These are objects that can be triggered but are display as none in the DOM (document object model)
+.global_hidden_objects{
+    display:none!important;
+    z-index: -1000!important;
+}
+
+///////////////////////////////
+// custom navToggle
+.navToggle{
+    position: relative;
+    background-color: transparent;
+    border:none;
+    height: 22px;
+    width:30px;          
+    outline:none!important;
+    transition: all 0.2s;
+}
+
+.space-container{
+    position: absolute;
+    left:2px;
+    .space-bar{
+        position: absolute;
+        left:0;
+        content: '';                        
+        width: 25px;
+        height: 1px;
+        background-color: black;
+        margin:0 auto;
+    }
+}
+
+.space-bar:nth-child(1){            
+    top: -6px;
+}
+.space-bar:nth-child(2){            
+    top: 0px;
+}
+.space-bar:nth-child(3){            
+    top: 6px;
+}
+
+.space-collapsed .space-bar:nth-of-type(1) {            
+    transform: translate3d(0,0,0) rotate(0deg);
+    width: 25px;
+    transition: all 1s;
+}
+.pointx.space-bar:nth-of-type(1) {
+    transform: translate3d(0,2px,0) rotate(45deg);
+    transform-origin: center center;
+    width: 11px;
+}
+
+.space-collapsed .space-bar:nth-of-type(2) {            
+    transform: translate3d(0,0,0) rotate(0deg);
+    width: 25px;
+    transition: all 1s;
+}
+.pointx.space-bar:nth-of-type(2){
+    transform: translate3d(-10px,0,0);
+    transform-origin: center center;
+    width: 20px;
+}
+
+.space-collapsed .space-bar:nth-of-type(3) {            
+    transform: translate3d(0,0,0) rotate(0deg);
+    width: 25px;
+    transition: all 1s;
+}
+.pointx.space-bar:nth-of-type(3) {
+    transform: translate3d(0,-2px,0) rotate(-45deg);
+    transform-origin: center center;
+    width: 11px;
+}
+
+
+///////////////////////////////
+// If edit mode is activated, block sidebar
+.sidebar-blocker{
+    position: fixed;
+    top:0;
+    left:0;
+    bottom:0;
+    background-color: transparent;
+    width: 250px;
+    height: 100vh;    
+    display:none;
+    @media(max-width:767px){
+        display:none!important;
+    }
+}
+// Sidebar
+/*
+    DEMO STYLE
+*/
+body {
+    font-family: 'Open Sans', sans-serif;
+    background: #fafafa;
+    font-family: 'Open Sans', sans-serif;
+}
+
+p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
+
+.navbar {
+    padding:0;
+    background: #fff;
+    border: none;
+    border-radius: 0;
+    margin-bottom: 40px;    
+}
+
+.welcome{
+    color:black;
+    font-weight: 400;    
+}
+.navbar-btn {
+    box-shadow: none;
+    outline: none !important;
+    border: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    border-bottom: 1px dashed #ddd;
+    margin: 40px 0;
+}
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+}
+
+#sidebar {
+    min-width: 250px;
+    max-width: 250px;
+    background: #04091e;
+    color: #fff;
+    transition: all 0.3s;
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #04091e;
+}
+
+#sidebar ul.components {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255, .1);
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sidebar ul li a {
+    padding: 10px;
+    font-size: .9em;
+    font-weight: 300;
+    display: block;
+}
+
+#sidebar ul li a:hover {
+    color: #000;
+    background: #fff;
+}
+
+#sidebar ul li.active>a,
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #04091e;
+}
+
+a[data-toggle="collapse"] {
+    position: relative;
+}
+
+.dropdown-toggle::after {
+    display: block;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+ul ul a {
+    font-size: 0.9em !important;
+    padding-left: 30px !important;
+    background: #04091e;
+}
+
+ul.CTAs {
+    padding: 20px;
+}
+
+ul.CTAs a {
+    text-align: center;
+    font-size: 0.9em !important;
+    display: block;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+a.download {
+    background: #fff;
+    color: #04091e;
+}
+
+a.article,
+a.article:hover {
+    background: #04091e !important;
+    color: #fff !important;
+}
+
+/* ---------------------------------------------------
+    CONTENT STYLE
+----------------------------------------------------- */
+
+#content {
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+
+.fa-align-left{
+    font-size: 18px;
+}
+button{    
+    box-shadow: none!important;
+}
+@media (max-width: 1050px) {
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}
+///////////////////////////////
+
+///////////////////////////////
+// Dashboard and sub-components
+// Table
+table{
+    font-size: 13px;
+}
+
+._box{    
+    //padding: 0 10px;
+    border:1px solid rgba(0,0,0,.05);
+    -webkit-box-shadow: 0px 10px 18px -8px rgba(0,0,0,.2);
+    -moz-box-shadow: 0px 10px 18px -8px rgba(0,0,0,.2);
+    box-shadow: 0px 10px 18px -8px rgba(0,0,0,.2);
+    
+}
+.actionBtn{
+    padding:0;
+    width: 30px;
+    border-radius: 0;
+}
+
+///////////////////////////////
+
+// Vue MODAL
+/****************************************/
+/* MODAL */
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;  
+    background-color: rgba(0, 0, 0, .5);
+    display: table;
+    transition: opacity .3s ease;  
+    
+  }
+  
+  .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;  
+  }
+  
+  .modal-container {
+    width: 400px;
+    margin: 0px auto;
+    padding: 20px 30px;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, .33);
+    transition: all .3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  @media(max-width:415px){
+      .modal-container{
+          width: 350px;
+      }
+  }
+  .modal-header {
+    margin-top: 0;
+    font-weight: 600;
+  }
+  
+  .modal-body {
+    margin: 20px 0;
+  }
+  
+  .modal-default-button {
+    float: right;
+  }
+  
+  /* MODAL
+   * The following styles are auto-applied to elements with
+   * transition="modal" when their visibility is toggled
+   * by Vue.js.
+   *
+   * You can easily play with the modal transition by editing
+   * these styles.
+   */
+  
+  .modal-enter {
+    opacity: 0;
+  }
+  
+  .modal-leave-active {
+    opacity: 0;
+
+  }
+  
+  .modal-enter .modal-container,
+  .modal-leave-active .modal-container {
+    -webkit-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  /****************************************/
+  // payments.vue, editexpenses.vue
+  .column-box{    
+    margin: 0 auto;
+    padding-bottom: 50px;
+    border:1px solid rgba(0,0,0, .1);
+    height: 100%;
+}
+
+
+// Fixed: vuejs-calendar not showing color font when inserted in table
+// todopayment.vue
+.vdp-datepicker__calendar{
+    color:black;
+    /*
+    input{
+        background-color: red;
+    }
+    */
+}
+
+.vdp-input{       
+    input{
+        border:1px solid rgba(0,0,0, .35);
+        width: 95%;
+        padding: 6px;
+    }
+}
+
+.customInput{
+    border-radius: 0;
+    background-color: white!important;
+}
+.customInput_w{
+    width: 100%!important;
+}
+
+.route-h4{
+    background-image: linear-gradient(#0083ff, #479be9);       
+    padding: 10px;
+    font-size: 14px;
+    color:white;
+
+    @media(max-width: 567px){
+        font-size: 12px;
+    }
+}
+
+.components li i{
+    color:#04091e;
+    width: 30px;
+}
+.components li span{               
+   margin-left:10px;               
+}
+
+
+.login-form{
+   background-color: #04091e;   
+   p{
+       color:white;
+   }
+}
+.card{
+   position: relative;
+   -webkit-box-shadow: 0px 10px 18px -2px rgba(255,255,255, .2);
+    -moz-box-shadow: 0px 10px 18px -2px rgba(255,255,255, .2);
+    box-shadow: 0px 10px 18px -2px rgba(255,255,255, .2);
+}
+.card-body h6{
+   margin-top: 40px;
+   text-transform: uppercase;
+   font-size: 16px;
+   font-weight: 300;
+}
+.header-logo{
+    z-index:100;
+    position: absolute;
+    top:-44px;
+    left:50%;
+    transform: translate(-50%, 0);
+    width: 80px;
+    height: 80px;
+    border-radius: 100%;
+    background-color: #04091e;
+    
+    border:.15em solid rgba(255,255,255, 1);
+}
+.header-logo span{
+   color:white; 
+   font-size: 24px;
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   color:#e2342f;
+   transform: translate(-50%, -50%);
+}
+.card{
+    -webkit-box-shadow: 0px 10px 19px -8px rgba(0,0,0,0.15);
+    -moz-box-shadow: 0px 10px 19px -8px rgba(0,0,0,0.15);
+    box-shadow: 0px 10px 19px -8px rgba(0,0,0,0.15);
+    border-radius: 4px;
+}
